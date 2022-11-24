@@ -1,10 +1,12 @@
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./routes/navigation/navigation-component";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigation />}></Route>
+    </Routes>
   );
-}
+};
 
 export default App;
