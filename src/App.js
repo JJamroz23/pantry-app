@@ -1,11 +1,17 @@
-import { Route, Routes } from "react-router-dom";
-import Navigation from "./routes/navigation/navigation-component";
+import AppRoutes from "./Routes";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import { GlobalStyle } from "./global.styles.js";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}></Route>
-    </Routes>
+    <React.StrictMode>
+      <BrowserRouter>
+        <AppRoutes />;
+        <GlobalStyle />
+      </BrowserRouter>
+    </React.StrictMode>
   );
 };
 
