@@ -1,15 +1,16 @@
+import { Outlet } from "react-router-dom";
 import SignIn from "../../components/sign-in/sign-in-component";
 import SignUp from "../../components/sign-up/sign-up-component";
-import { AuthenticationContainer } from "./authentication-style";
-import { Outlet } from "react-router-dom";
+
+import { Box } from "@mui/system";
 
 const Authentication = () => {
   return (
-    <AuthenticationContainer>
+    <Box display="flex" justifyContent="space-around" p={5}>
       <Outlet />
       <SignIn />
       <SignUp />
-    </AuthenticationContainer>
+    </Box>
   );
 };
 
