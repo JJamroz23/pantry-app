@@ -7,7 +7,9 @@ import {
   signAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
-import FormInput from "../input/input-component";
+
+import { Stack, Button, TextField, Box } from "@mui/material";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const defaultSignInValues = {
   email: "",
@@ -54,33 +56,55 @@ const SignIn = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <Box display="flex" flexDirection="column" gap={5} padding={10}>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <FormInput
-          label="Email"
-          type="email"
-          required
-          onChange={handleChange}
-          name="email"
-          value={email}
-        />
-        <FormInput
-          label="Password"
-          type="password"
-          required
-          onChange={handleChange}
-          name="password"
-          value={password}
-        />
-
-        <div className="buttons-container">
-          <button type="submit">Sign in</button>
-          <button onClick={signInWithGoogle}>Google Signin</button>
-        </div>
+        <Stack direction="row" spacing={4}>
+          <TextField
+            label="Email"
+            variant="outlined"
+            type="email"
+            required
+            onChange={handleChange}
+            name="email"
+            value={email}
+          />
+          <TextField
+            label="Password"
+            variant="outlined"
+            type="password"
+            required
+            onChange={handleChange}
+            name="password"
+            value={password}
+          />
+        </Stack>
+        <Box
+          display="flex"
+          gap={5}
+          marginTop={5}
+          justifyContent="space-between"
+        >
+          <Button
+            type="submit"
+            variant="contained"
+            endIcon={<SendRoundedIcon />}
+            size="large"
+          >
+            Sign in
+          </Button>
+          <Button
+            onClick={signInWithGoogle}
+            variant="contained"
+            endIcon={<SendRoundedIcon />}
+            size="large"
+          >
+            Google Sign in
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 

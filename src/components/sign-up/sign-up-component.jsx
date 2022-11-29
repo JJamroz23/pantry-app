@@ -5,7 +5,9 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import FormInput from "../input/input-component";
+
+import { Button, TextField, Box } from "@mui/material";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const defaultSignUpValues = {
   displayName: "",
@@ -51,50 +53,59 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <Box display="flex" flexDirection="column" gap={5} padding={10}>
       <h1>Sign up with your email and password</h1>
       <form onSubmit={handleSubmit}>
-        {/* zron input cmp, ktory renderuje label i input  */}
-        <FormInput
-          label="Display name"
-          type="text"
-          required
-          onChange={handleChange}
-          name="displayName"
-          value={displayName}
-        />
+        <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={5}>
+          <TextField
+            label="Display name"
+            type="text"
+            required
+            onChange={handleChange}
+            name="displayName"
+            value={displayName}
+          />
 
-        <FormInput
-          label="Email"
-          type="email"
-          required
-          onChange={handleChange}
-          name="email"
-          value={email}
-        />
+          <TextField
+            label="Email"
+            type="email"
+            required
+            onChange={handleChange}
+            name="email"
+            value={email}
+          />
 
-        <FormInput
-          label="Password"
-          type="password"
-          required
-          onChange={handleChange}
-          name="password"
-          value={password}
-        />
+          <TextField
+            label="Password"
+            type="password"
+            required
+            onChange={handleChange}
+            name="password"
+            value={password}
+          />
 
-        <FormInput
-          label="Password Confirmation"
-          type="password"
-          required
-          onChange={handleChange}
-          name="passwordConfirmation"
-          value={passwordConfirmation}
-        />
-        <button type="submit" onClick={handleSubmit}>
-          Sign up
-        </button>
+          <TextField
+            label="Password Confirmation"
+            type="password"
+            required
+            onChange={handleChange}
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+          />
+          <Box gridColumn="span 2" justifySelf="center">
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              variant="contained"
+              endIcon={<SendRoundedIcon />}
+              size="large"
+            >
+              Sign up
+            </Button>
+          </Box>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 
