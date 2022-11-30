@@ -6,16 +6,11 @@ import { Link } from "react-router-dom";
 
 import { AppBar, Toolbar, Button, IconButton, Box } from "@mui/material";
 import KitchenOutlinedIcon from "@mui/icons-material/KitchenOutlined";
-import typography from "@mui/system";
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
-  console.log(currentUser);
+  console.log({ currentUser });
 
   return (
     <>
@@ -32,11 +27,7 @@ const Navigation = () => {
           <Box sx={{ flexGrow: 1, typography: "h6" }}>PANTRY </Box>
           <Link to="/">
             {currentUser ? (
-              <Button
-                variant="contained"
-                color="error"
-                onClick={signOutHandler}
-              >
+              <Button variant="contained" color="error" onClick={signOutUser}>
                 SIGN OUT
               </Button>
             ) : (

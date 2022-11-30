@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user-context/user-context";
 import { useObjectState } from "../../hooks";
+import { useNavigate } from "react-router-dom";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -20,7 +20,8 @@ const SignUp = () => {
   const { values, restoreDefaultValues, setValue } =
     useObjectState(defaultSignUpValues);
   const { displayName, email, password, passwordConfirmation } = values;
-  const { setCurrentUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,7 +35,8 @@ const SignUp = () => {
         email,
         password
       );
-      setCurrentUser(user);
+
+      navigate("/settings");
 
       await createUserDocumentFromAuth(user, { displayName });
       restoreDefaultValues();
@@ -54,7 +56,8 @@ const SignUp = () => {
 
   return (
     <Box display="flex" flexDirection="column" gap={5} padding={10}>
-      <h1>Sign up with your email and password</h1>
+      <h1>Do not have account yet?</h1>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={5}>
           <TextField
