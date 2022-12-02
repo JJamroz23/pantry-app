@@ -1,7 +1,7 @@
 import { useNavigate, Outlet } from "react-router-dom";
-import { useAuth } from "../../hooks";
+import { useAuth } from "../hooks";
 
-const ProtectedRoute = () => {
+const PrivateRoute = () => {
   const { checked, logged } = useAuth();
   const navigate = useNavigate();
 
@@ -24,4 +24,4 @@ const ProtectedRoute = () => {
   return <Outlet />;
 };
 
-export default ProtectedRoute;
+export default PrivateRoute;

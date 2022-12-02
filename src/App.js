@@ -1,7 +1,8 @@
-import AppRoutes from "./Routes";
+import AppRoutes from "./routes/Routes";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./contexts/user-context/user-context";
+import { UserProvider } from "./contexts/userContext/userContext";
+// import { ProductProvider } from "./contexts/product-context/product-context";
 
 import { GlobalStyle } from "./global.styles.js";
 
@@ -10,8 +11,10 @@ const App = () => {
     <React.StrictMode>
       <BrowserRouter>
         <UserProvider>
+          {/* <ProductProvider> */}
           <AppRoutes />;
           <GlobalStyle />
+          {/* </ProductProvider> */}
         </UserProvider>
       </BrowserRouter>
     </React.StrictMode>

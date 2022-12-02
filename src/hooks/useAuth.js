@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { authStateChangeListener } from "../utils/firebase/firebase.utils";
+import { useEffect, useState } from "react";
+import { authStateChangeListener } from "../utils/firebase/auth";
 
 const useAuth = () => {
   const [logged, setLogged] = useState(null);

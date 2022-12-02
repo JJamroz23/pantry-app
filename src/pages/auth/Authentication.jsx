@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import SignIn from "../../components/sign-in/sign-in-component";
-import SignUp from "../../components/sign-up/sign-up-component";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 import { Box } from "@mui/system";
 

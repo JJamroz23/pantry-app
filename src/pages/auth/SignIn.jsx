@@ -1,13 +1,13 @@
-import { useObjectState } from "../../hooks";
 import { useNavigate } from "react-router-dom";
+import { useObjectState } from "../../hooks";
 
 import {
   signAuthUserWithEmailAndPassword,
-  signInWithGooglePopup,
-} from "../../utils/firebase/firebase.utils";
+  signInWithGooglePopup
+} from "../../utils/firebase/auth";
 
-import { Stack, Button, TextField, Box } from "@mui/material";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import { Box, Button, Stack, TextField } from "@mui/material";
 
 const defaultSignInValues = {
   email: "",
