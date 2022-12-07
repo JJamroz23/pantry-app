@@ -1,15 +1,13 @@
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user-context/user-context";
+import { useNavigate } from "react-router-dom";
 import { useObjectState } from "../../hooks";
 
 import {
-  createUserDocumentFromAuth,
   signAuthUserWithEmailAndPassword,
-  signInWithGooglePopup,
-} from "../../utils/firebase/firebase.utils";
+  signInWithGooglePopup
+} from "../../utils/firebase/auth";
 
-import { Stack, Button, TextField, Box } from "@mui/material";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import { Box, Button, Stack, TextField } from "@mui/material";
 
 const defaultSignInValues = {
   email: "",
@@ -20,21 +18,21 @@ const SignIn = () => {
   const { values, restoreDefaultValues, setValue } =
     useObjectState(defaultSignInValues);
   const { email, password } = values;
-  const { setCurrentUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const signInWithGoogle = async () => {
-    // TODO:
-    // trycatch dodaj z obslua bledu
-    const { user } = await signInWithGooglePopup();
-    setCurrentUser(user);
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
+
+    navigate("/settings");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { user } = await signAuthUserWithEmailAndPassword(email, password);
-      setCurrentUser(user);
+      await signAuthUserWithEmailAndPassword(email, password);
+
+      navigate("/settings");
       restoreDefaultValues();
     } catch (error) {
       switch (error.code) {
@@ -57,7 +55,7 @@ const SignIn = () => {
 
   return (
     <Box display="flex" flexDirection="column" gap={5} padding={10}>
-      <h2>Already have an account?</h2>
+      <h1>Already have an account?</h1>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <Stack direction="row" spacing={4}>
@@ -80,6 +78,7 @@ const SignIn = () => {
             value={password}
           />
         </Stack>
+
         <Box
           display="flex"
           gap={5}

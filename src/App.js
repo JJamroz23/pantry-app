@@ -1,7 +1,7 @@
-import AppRoutes from "./Routes";
+import AppRoutes from "./routes/Routes";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./contexts/user-context/user-context";
+import { UserProvider } from "./contexts/userContext/userContext";
 
 import { GlobalStyle } from "./global.styles.js";
 
