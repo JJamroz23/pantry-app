@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { authStateChangeListener } from "../utils/firebase/auth";
 
 const useAuth = () => {
-  const [logged, setLogged] = useState(null);
+  const [logged, setLogged] = useState(false);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {

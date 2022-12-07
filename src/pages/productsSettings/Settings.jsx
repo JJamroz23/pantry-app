@@ -1,34 +1,65 @@
-import { Box, MenuItem, TextField } from "@mui/material";
-import { useCurrentUser, useObjectState } from "../../hooks";
-import { productToDocAdd } from "../../utils/firebase/products";
-import ProductForm from "./Form";
-import { useForm, useFieldArray } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import AddIcon from "@mui/icons-material/AddCircle";
+import SettingsProductForm from "./Form";
+
+import { Box, Button, IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
+import { useCurrentUser } from "../../hooks";
+import { addProductsDocs, getProducts } from "../../utils/firebase/products";
+import { schema } from "./formSchema";
+const DEFAULT_PRODUCT = {
+  maximum: "",
+  units: "",
+  name: "",
+  minimum: "",
+};
 
 const defaultSettingsValues = {
-  units: "",
-  product: "",
-  minimum: "",
-  maximum: "",
+  products: [DEFAULT_PRODUCT],
 };
+
+// TODO:
+
+// walidacja min depend on max and max on min
 
 const ProductsSettings = () => {
   const user = useCurrentUser();
-  console.log(user);
+  const [loading, setLoading] = useState(false);
 
-  const { values, restoreDefaultValues, setValue } = useObjectState(
-    defaultSettingsValues
-  );
-  const { units, product, minimum, maximum } = values;
+  const methods = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: defaultSettingsValues,
+    mode: "onSubmit", // trigger 1wszej walidacji
+    reValidateMode: "onChange", // trigger kazdej kolejnej walidacji
+  });
+  const { fields, append, remove } = useFieldArray({
+    name: "products",
+    control: methods.control,
+  });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setValue(name, value);
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const products = await getProducts(user.uid);
+      if (products.length) methods.setValue("products", products);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    productToDocAdd(user.uid, { product, units, minimum, maximum });
-    restoreDefaultValues();
+  console.log(methods.getValues().products);
+
+  useEffect(() => {
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onSubmit = async (currentFormValues) => {
+    await addProductsDocs(user.uid, currentFormValues);
+    loadData();
   };
 
   return (
@@ -40,29 +71,37 @@ const ProductsSettings = () => {
       alignItems="center"
     >
       <h1>Add products to your pantry!</h1>
-      <form onSubmit={handleSubmit}>
-        <Box display="flex" gap={5}>
-          <TextField
-            label="Select unit"
-            name="units"
-            select
-            value={units}
-            onChange={handleChange}
-            sx={{ width: 200 }}
-          >
-            <MenuItem value="kg">kilograms</MenuItem>
-            <MenuItem value="number">numbers</MenuItem>
-          </TextField>
-          {units && (
-            <ProductForm
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              product={product}
-              maximum={maximum}
-              minimum={minimum}
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        {fields.map((field, index) => {
+          return (
+            <SettingsProductForm
+              user={user}
+              remove={remove}
+              firestoreUid={field.uid}
+              index={index}
+              errors={methods.formState.errors}
+              loading={loading}
+              control={methods.control}
+              register={methods.register}
+              isSubmitting={methods.formState.isSubmitting}
+              key={field.id}
             />
-          )}
-        </Box>
+          );
+        })}
+        <IconButton
+          disabled={methods.formState.isSubmitting}
+          type="button"
+          onClick={() => append(DEFAULT_PRODUCT)}
+        >
+          <AddIcon />
+        </IconButton>
+        <Button
+          variant="contained"
+          disabled={methods.formState.isSubmitting || loading}
+          type="submit"
+        >
+          Save products
+        </Button>
       </form>
     </Box>
   );
