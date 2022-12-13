@@ -7,7 +7,8 @@ export const msgs = {
   number: "Must be a number",
   positive: "Must be a positive value",
   integer: "Must be integer",
-  minmax: "Must be greater than minimum value",
+  max: "Must be greater than minimum field value",
+  min: "Must be less than maximum field value",
 };
 export const schema = yup.object().shape({
   products: yup
@@ -29,7 +30,7 @@ export const schema = yup.object().shape({
             })
             .nullable()
             .required(msgs.requiredNumber)
-            .min(yup.ref("minimum"), "must be greater than minimum field value")
+            .min(yup.ref("minimum"), msgs.max)
             .test("positiveNumber", msgs.positive, (value) => {
               return !(Number(value) <= 0);
             })
@@ -52,7 +53,7 @@ export const schema = yup.object().shape({
             })
             .nullable()
             .required(msgs.requiredNumber)
-            .max(yup.ref("maximum"), "must be less than maximum field value")
+            .max(yup.ref("maximum"), msgs.min)
             .test("positiveNumber", msgs.positive, (value) => {
               return !(Number(value) <= 0);
             })
