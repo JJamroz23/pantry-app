@@ -10,7 +10,7 @@ const App = () => {
     <React.StrictMode>
       <BrowserRouter>
         <UserProvider>
-          <AppRoutes />;
+          <AppRoutes />
           <GlobalStyle />
         </UserProvider>
       </BrowserRouter>

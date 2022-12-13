@@ -19,10 +19,6 @@ const defaultSettingsValues = {
   products: [DEFAULT_PRODUCT],
 };
 
-// TODO:
-
-// walidacja min depend on max and max on min
-
 const ProductsSettings = () => {
   const user = useCurrentUser();
   const [loading, setLoading] = useState(false);

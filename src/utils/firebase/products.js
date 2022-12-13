@@ -39,7 +39,14 @@ export const addProductDoc = async (userId, productDto) => {
       `users/${userId}/products`,
       productDto.uid || uuidv4()
     );
-    await setDoc(productsRef, omit(productDto, "uid"), { merge: true });
+    await setDoc(
+      productsRef,
+      {
+        ...omit(productDto, "uid"),
+        currentValue: productDto.currentValue || 0,
+      },
+      { merge: true }
+    );
   } catch (error) {
     console.error(error);
   }
