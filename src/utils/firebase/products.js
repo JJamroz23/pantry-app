@@ -4,18 +4,16 @@ import {
   getDocs,
   collection,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import omit from "lodash/omit";
 import { database } from "./";
 
 export const getProducts = async (userId) => {
-  // zaciaga dane
-  console.log(1);
   const querySnapshot = await getDocs(
     collection(database, `users/${userId}/products`)
   );
-  console.log(2, querySnapshot);
   const x = querySnapshot.docs
     .map((doc) => ({
       ...doc.data(),
@@ -26,14 +24,23 @@ export const getProducts = async (userId) => {
   return x;
 };
 
+export const updateCurrentValue = async (
+  userId,
+  productId,
+  currValue,
+  decNumber
+) => {
+  await updateDoc(doc(database, `users/${userId}/products/`, productId), {
+    currentValue: currValue - decNumber,
+  });
+};
+
 export const deleteProductDoc = async (userId, productId) => {
-  console.log(productId);
   await deleteDoc(doc(database, `users/${userId}/products`, productId));
 };
 
 export const addProductDoc = async (userId, productDto) => {
   try {
-    console.log(productDto, "122");
     const productsRef = doc(
       database,
       `users/${userId}/products`,
@@ -61,14 +68,3 @@ export const addProductsDocs = async (userId, { products }) => {
     console.error(error);
   }
 };
-
-// export const getProductFromBase = async () => {
-//   // const collectionRef = collection(database, `users/`);
-//   const { productData } = productToDocAdd;
-//   const productDetails = await getDocs(productData);
-//   const productInfo = productDetails.docs.map((doc) => ({
-//     ...doc.data(),
-//     id: doc.id,
-//   }));
-//   console.log(productInfo);
-// };

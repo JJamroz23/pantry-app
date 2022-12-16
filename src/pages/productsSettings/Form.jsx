@@ -4,6 +4,7 @@ import SingleSelect from "../../components/Select";
 import { Controller } from "react-hook-form";
 import { Grid, IconButton, Skeleton, TextField } from "@mui/material";
 import get from "lodash/get";
+import IngredientsAutocompleteField from "./IngredientsAutocompleteField";
 
 const SettingsProductForm = ({
   user,
@@ -59,17 +60,11 @@ const SettingsProductForm = ({
         {loading ? (
           <Skeleton variant="rectangular" width={210} height={60} />
         ) : (
-          <Controller
-            control={control}
+          <IngredientsAutocompleteField
             name={`products.${index}.name`}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                {...getFieldErrorProps(field.name)}
-                label="Product name"
-                sx={{ width: 200 }}
-              />
-            )}
+            control={control}
+            getFieldErrorProps={getFieldErrorProps}
+            register={register}
           />
         )}
       </Grid>
