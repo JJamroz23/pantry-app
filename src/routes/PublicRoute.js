@@ -7,7 +7,6 @@ const PublicRoute = () => {
   const navigate = useNavigate();
 
   if (!checked) {
-    console.log("checked");
     return <FullPageLoader />;
   }
 
@@ -15,7 +14,7 @@ const PublicRoute = () => {
     navigate("/settings");
     return;
   }
-  console.log("hmmm");
+
   return <Outlet />;
 };
 

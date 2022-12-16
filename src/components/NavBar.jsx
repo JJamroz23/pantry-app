@@ -1,16 +1,13 @@
-import { Outlet } from "react-router-dom";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/userContext/userContext";
 import { signOutUser } from "../utils/firebase/auth";
-import { Link } from "react-router-dom";
 
-import { AppBar, Toolbar, Button, IconButton, Box } from "@mui/material";
 import KitchenOutlinedIcon from "@mui/icons-material/KitchenOutlined";
+import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-
-  console.log({ currentUser });
 
   return (
     <>
@@ -54,7 +51,6 @@ const Navigation = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Outlet />
     </>
   );
 };

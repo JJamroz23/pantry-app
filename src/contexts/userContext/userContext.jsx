@@ -16,10 +16,8 @@ export const UserProvider = ({ children }) => {
     const listener = authStateChangeListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user);
-        console.log("aa");
       }
       setCurrentUser(user);
-      console.log("bb");
     });
     return listener;
   }, []);

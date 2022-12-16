@@ -8,6 +8,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useCurrentUser } from "../../hooks";
 import { addProductsDocs, getProducts } from "../../utils/firebase/products";
 import { schema } from "./formSchema";
+
 const DEFAULT_PRODUCT = {
   maximum: "",
   units: "",
@@ -22,7 +23,7 @@ const defaultSettingsValues = {
 const ProductsSettings = () => {
   const user = useCurrentUser();
   const [loading, setLoading] = useState(false);
-
+  // productsApi();
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: defaultSettingsValues,
@@ -33,6 +34,8 @@ const ProductsSettings = () => {
     name: "products",
     control: methods.control,
   });
+
+  // productsApi();
 
   const loadData = async () => {
     setLoading(true);
@@ -45,8 +48,6 @@ const ProductsSettings = () => {
       setLoading(false);
     }
   };
-
-  console.log(methods.getValues().products);
 
   useEffect(() => {
     loadData();

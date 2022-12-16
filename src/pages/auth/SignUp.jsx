@@ -3,7 +3,7 @@ import { useObjectState } from "../../hooks";
 
 import {
   createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth
+  createUserDocumentFromAuth,
 } from "../../utils/firebase/auth";
 
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
@@ -44,7 +44,7 @@ const SignUp = () => {
       if (error.code === "auth/email-already-in-use") {
         alert("This email is already in use");
       } else {
-        console.log("Creation of user went wrong", error);
+        console.error("Creation of user went wrong", error);
       }
     }
   };

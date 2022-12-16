@@ -43,7 +43,6 @@ export const schema = yup.object().shape({
 
             .typeError(msgs.number)
             .transform(function (value, originalValue) {
-              console.log({ value, originalValue });
               if (this.isType(value)) return value;
               if (!originalValue || !originalValue.trim()) {
                 return null;
@@ -69,7 +68,7 @@ export const schema = yup.object().shape({
             })
             .required(msgs.required),
 
-          name: yup.string(msgs.string).required(msgs.required),
+          name: yup.string(msgs.string).nullable().required(msgs.required),
           id: yup.string().optional(),
         })
         .required(msgs.required)

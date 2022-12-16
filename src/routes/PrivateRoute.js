@@ -6,21 +6,15 @@ const PrivateRoute = () => {
   const { checked, logged } = useAuth();
   const navigate = useNavigate();
 
-  console.log({
-    checked,
-    logged,
-  });
-
   if (!checked) {
     return <FullPageLoader />;
   }
 
   if (!logged) {
-    // console.log(2);
     navigate("/");
     return;
   }
-  // console.log(3);
+
   return <Outlet />;
 };
 
