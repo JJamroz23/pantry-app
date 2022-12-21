@@ -1,9 +1,8 @@
 import { Grid, TextField, Skeleton } from "@mui/material";
 import { Controller } from "react-hook-form";
 import get from "lodash/get";
-import ProductsDecrement from "./ProductDec";
 
-const PantryProductForm = ({
+const ShoppingListForm = ({
   firestoreUid,
   user,
   index,
@@ -22,18 +21,6 @@ const PantryProductForm = ({
       helperText: errorObj?.message,
     };
   };
-
-  // if (loading || isSubmitting) {
-  //   return (
-  //     <Box display="flex">
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //     </Box>
-  //   );
-  // }
-
   return (
     <Grid key={firestoreUid} container gap={3} mb={3} justifyContent="center">
       <Grid item>
@@ -81,34 +68,22 @@ const PantryProductForm = ({
         ) : (
           <Controller
             control={control}
-            name={`products.${index}.currentValue`}
+            name={`products.${index}.updateValue`}
             render={({ field }) => (
               <TextField
                 {...register(field.name, {
                   valueAsNumber: true,
                 })}
                 {...getFieldErrorProps(field.name)}
-                label="current value"
+                label="add value"
                 sx={{ width: 100 }}
               />
             )}
           />
         )}
       </Grid>
-      <Grid item marginLeft={5}>
-        <ProductsDecrement
-          loading={loading}
-          firestoreUid={firestoreUid}
-          user={user}
-          index={index}
-          control={control}
-          register={register}
-          getFieldErrorProps={getFieldErrorProps}
-          isSubmitting={isSubmitting}
-        />
-      </Grid>
     </Grid>
   );
 };
 
-export default PantryProductForm;
+export default ShoppingListForm;

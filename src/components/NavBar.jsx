@@ -23,6 +23,13 @@ const Navigation = () => {
           </IconButton>
           <Box sx={{ flexGrow: 1, typography: "h6" }}>PANTRY </Box>
           <Box display="flex" gap={5}>
+            <Link to="shoppingList">
+              {currentUser ? (
+                <Button variant="contained" color="success">
+                  Shopping list
+                </Button>
+              ) : null}
+            </Link>
             <Link to="/pantry">
               {currentUser ? (
                 <Button variant="contained" color="success">
