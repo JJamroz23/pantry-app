@@ -5,7 +5,7 @@ import { useCurrentUser } from "../../hooks";
 import {
   addProductsDocs,
   getProducts,
-  updateCurrentValue,
+  updateDecCurrentValue,
 } from "../../utils/firebase/products";
 import PantryProductForm from "./Form";
 import { schema } from "./formSchema";
@@ -70,7 +70,7 @@ const Pantry = () => {
     try {
       await Promise.all(
         formValues.products.map((val) =>
-          updateCurrentValue(
+          updateDecCurrentValue(
             user.uid,
             val.uid,
             val.currentValue,
@@ -108,8 +108,6 @@ const Pantry = () => {
               loading={loading}
               errors={methods.formState.errors}
               register={methods.register}
-              currValue={field.currentValue}
-              updateValue={field.updateValue}
               isSubmitting={methods.formState.isSubmitting}
             />
           );

@@ -24,14 +24,25 @@ export const getProducts = async (userId) => {
   return x;
 };
 
+export const updateDecCurrentValue = async (
+  userId,
+  productId,
+  currValue,
+  decValue
+) => {
+  await updateDoc(doc(database, `users/${userId}/products/`, productId), {
+    currentValue: currValue - decValue,
+  });
+};
+
 export const updateCurrentValue = async (
   userId,
   productId,
   currValue,
-  decNumber
+  addValue
 ) => {
   await updateDoc(doc(database, `users/${userId}/products/`, productId), {
-    currentValue: currValue - decNumber,
+    currentValue: currValue + addValue,
   });
 };
 

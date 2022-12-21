@@ -28,10 +28,10 @@ export const schema = yup.object().shape({
         })
         .nullable()
         .required(msgs.requiredNumber)
-        .min(yup.ref("minimum"), msgs.max)
+        // .min(yup.ref("minimum"), msgs.max)
         .max(yup.ref("maximum"), msgs.min)
         .test("positiveNumber", msgs.positive, (value) => {
-          return !(Number(value) <= 0);
+          return !(Number(value) < 0);
         })
         .when("units", {
           is: "unit",
