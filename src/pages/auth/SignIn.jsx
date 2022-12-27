@@ -3,7 +3,7 @@ import { useObjectState } from "../../hooks";
 
 import {
   signAuthUserWithEmailAndPassword,
-  signInWithGooglePopup
+  signInWithGooglePopup,
 } from "../../utils/firebase/auth";
 
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
@@ -89,7 +89,7 @@ const SignIn = () => {
             type="submit"
             variant="contained"
             endIcon={<SendRoundedIcon />}
-            size="large"
+            size="small"
           >
             Sign in
           </Button>

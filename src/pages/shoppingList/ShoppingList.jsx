@@ -90,15 +90,6 @@ const ShoppingList = () => {
     }
   };
 
-  // const onSubmit = async (currentFormValues) => {
-  //   console.log(currentFormValues);
-  //   await addProductsDocs(user.uid, {
-  //     products: currentFormValues.products.map((productData) =>
-  //       omit(productData, "updateValue")
-  //     ),
-  //   });
-  // };
-
   return (
     <Box display="flex" flexDirection="column" gap={5} alignItems="center">
       <h1>This is yout shopping list!</h1>
@@ -153,18 +144,6 @@ const ShoppingList = () => {
           Shopping
         </Button>
       )}
-
-      <Box display="flex" justifyContent="space-between">
-        {/* <Button
-            variant="contained"
-            color="success"
-            disabled={methods.formState.isSubmitting || loading}
-            type="submit"
-            sx={{ marginLeft: "200px" }}
-          >
-            UPDATE VALUE
-          </Button> */}
-      </Box>
     </Box>
   );
 };

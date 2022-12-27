@@ -23,7 +23,7 @@ const defaultSettingsValues = {
 const ProductsSettings = () => {
   const user = useCurrentUser();
   const [loading, setLoading] = useState(false);
-  // productsApi();
+
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: defaultSettingsValues,
@@ -34,8 +34,6 @@ const ProductsSettings = () => {
     name: "products",
     control: methods.control,
   });
-
-  // productsApi();
 
   const loadData = async () => {
     setLoading(true);
