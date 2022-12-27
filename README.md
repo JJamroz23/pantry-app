@@ -1,9 +1,12 @@
-# Getting Started with Create React App
+#Pantry application
+Application is hosted on Netlify https://pantry-app-jjamroz23.netlify.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##About application:
+The purpose of this application is to make pantry of products. In application it's possible to add, delete, update list of products.
+Api: https://spoonacular.com/food-api/
 
-# Project info
-
+###Technologies used:
+Javascript, React, Material UI, Firebase
 
 ## Available Scripts
 
