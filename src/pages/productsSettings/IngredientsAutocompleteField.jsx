@@ -9,7 +9,6 @@ const IngredientsAutocompleteField = ({
   control,
   name,
   getFieldErrorProps,
-  register,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);

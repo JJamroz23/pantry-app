@@ -1,18 +1,14 @@
-import { Grid, TextField, Skeleton } from "@mui/material";
-import { Controller } from "react-hook-form";
+import { Grid, Skeleton, TextField } from "@mui/material";
 import get from "lodash/get";
-import ProductsDecrement from "./ProductDec";
+import { Controller } from "react-hook-form";
 
 const PantryProductForm = ({
   firestoreUid,
-  user,
   index,
   control,
   loading,
   register,
   errors,
-  currValue,
-  updateValue,
   isSubmitting,
 }) => {
   const getFieldErrorProps = (fieldPath) => {
@@ -23,62 +19,60 @@ const PantryProductForm = ({
     };
   };
 
-  // if (loading || isSubmitting) {
-  //   return (
-  //     <Box display="flex">
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //       <Skeleton variant="rectangular" width={210} height={60} />
-  //     </Box>
-  //   );
-  // }
+  if (loading || isSubmitting) {
+    return (
+      <Grid
+        key={firestoreUid}
+        container
+        height={60}
+        gap={3}
+        mb={3}
+        justifyContent="center"
+      >
+        {Array(4)
+          .fill(1)
+          .map((i, idx) => (
+            <Grid item key={idx} width={200} height={60}>
+              <Skeleton variant="rectangular" width={200} height={60} />
+            </Grid>
+          ))}
+      </Grid>
+    );
+  }
 
   return (
-    <Grid key={firestoreUid} container gap={3} mb={3} justifyContent="center">
-      <Grid item>
-        {loading ? (
-          <Skeleton variant="rectangular" width={210} height={60} />
-        ) : (
+    <>
+      <Grid
+        key={firestoreUid}
+        container
+        spacing={2}
+        mb={3}
+        justifyContent="center"
+      >
+        <Grid item sm={3} xs={6}>
           <Controller
             control={control}
             name={`products.${index}.name`}
             render={({ field }) => (
               <TextField
-                label="Prodcut name"
+                label="Product name"
                 variant="outlined"
                 disabled
                 {...field}
-                sx={{ width: 100 }}
               />
             )}
           />
-        )}
-      </Grid>
-
-      <Grid item>
-        {loading ? (
-          <Skeleton variant="rectangular" width={210} height={60} />
-        ) : (
+        </Grid>
+        <Grid item sm={3} xs={6}>
           <Controller
             control={control}
             name={`products.${index}.units`}
             render={({ field }) => (
-              <TextField
-                disabled
-                {...field}
-                label="Prodcut units"
-                sx={{ width: 100 }}
-              />
+              <TextField disabled {...field} label="Product units" />
             )}
           />
-        )}
-      </Grid>
-
-      <Grid item>
-        {loading ? (
-          <Skeleton variant="rectangular" width={210} height={60} />
-        ) : (
+        </Grid>
+        <Grid item sm={3} xs={6}>
           <Controller
             control={control}
             name={`products.${index}.currentValue`}
@@ -89,25 +83,28 @@ const PantryProductForm = ({
                 })}
                 {...getFieldErrorProps(field.name)}
                 label="current value"
-                sx={{ width: 100 }}
               />
             )}
           />
-        )}
+        </Grid>
+        <Grid item sm={3} xs={6}>
+          <Controller
+            control={control}
+            name={`products.${index}.updateValue`}
+            render={({ field }) => (
+              <TextField
+                {...register(field.name, {
+                  valueAsNumber: true,
+                })}
+                {...getFieldErrorProps(field.name)}
+                label="subtract value"
+                defaultValue={0}
+              />
+            )}
+          />
+        </Grid>
       </Grid>
-      <Grid item marginLeft={5}>
-        <ProductsDecrement
-          loading={loading}
-          firestoreUid={firestoreUid}
-          user={user}
-          index={index}
-          control={control}
-          register={register}
-          getFieldErrorProps={getFieldErrorProps}
-          isSubmitting={isSubmitting}
-        />
-      </Grid>
-    </Grid>
+    </>
   );
 };
 

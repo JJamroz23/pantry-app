@@ -1,4 +1,3 @@
-// import { getAnalytics } from "firebase/analytics";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,

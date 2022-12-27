@@ -28,7 +28,6 @@ export const schema = yup.object().shape({
         })
         .nullable()
         .required(msgs.requiredNumber)
-        // .min(yup.ref("minimum"), msgs.max)
         .max(yup.ref("maximum"), msgs.min)
         .test("positiveNumber", msgs.positive, (value) => {
           return !(Number(value) < 0);
@@ -41,15 +40,6 @@ export const schema = yup.object().shape({
         .number()
         .required(msgs.requiredNumber)
         .typeError(msgs.number)
-        // .transform(function (value, originalValue, schema) {
-        //   if (this.isType(value)) return value;
-        //   if (!originalValue || !originalValue.trim()) {
-        //     return null;
-        //   }
-
-        //   // we return the invalid original value
-        //   return originalValue;
-        // })
         .transform((_, val) => (val === Number(val) ? val : null))
         .max(yup.ref("currentValue"), msgs.minCurrVal)
         .test("positiveNumber", msgs.positive, (value) => {
