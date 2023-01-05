@@ -1,15 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
+console.log(process.env.REACT_APP_ABC);
+window.ABC = process.env.REACT_APP_ABC;
 const firebaseConfig = {
-  apiKey: "AIzaSyCj3TP8tKvvQxfDeQ3XIBWDgsx82dmHWMc",
-  authDomain: "pentry-app.firebaseapp.com",
-  projectId: "pentry-app",
-  storageBucket: "pentry-app.appspot.com",
-  messagingSenderId: "108919518385",
-  appId: "1:108919518385:web:acf6b5a4a188f6a6d19e90",
-  measurementId: "G-63LHWRSDF5",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 initializeApp(firebaseConfig);
