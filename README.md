@@ -6,7 +6,7 @@ The purpose of this application is to make pantry of products. In application it
 Api: https://spoonacular.com/food-api/
 
 ### `Technologies used:`
-Javascript, React, Material UI, Firebase
+Javascript, React, Material UI, Firebase, react-hook-form, 
 
 
 
