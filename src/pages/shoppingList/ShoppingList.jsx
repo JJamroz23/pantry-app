@@ -91,17 +91,37 @@ const ShoppingList = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={5} alignItems="center">
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      sx={{
+        gap: {
+          xs: 2,
+          sm: 5,
+        },
+      }}
+    >
       <h1>This is yout shopping list!</h1>
       {!formMode
         ? arrByValue.map((field) => (
             <Grid
               key={field.uid}
               container
-              gap={4}
               mb={3}
-              fontSize={20}
               textTransform="upperCase"
+              justifyContent="center"
+              sx={{
+                fontSize: {
+                  xs: 10,
+                  sm: 14,
+                  md: 20,
+                },
+                gap: {
+                  xs: 1,
+                  md: 4,
+                },
+              }}
             >
               <Grid item>units: {field.units}</Grid>
               <Grid item>product: {field.name}</Grid>

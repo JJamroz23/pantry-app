@@ -13,14 +13,6 @@ const useStyles = makeStyles()(() => ({
   },
 }));
 
-// import { styled } from "@mui/material/styles";
-
-// const Responsive = styled("div")(({ Button }) => ({
-//   [Button.breakpoints.down("lg")]: {
-//     size: "small",
-//   },
-// }));
-
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { classes } = useStyles();
@@ -37,21 +29,30 @@ const Navigation = () => {
             <KitchenOutlinedIcon />
           </IconButton>
           <Box sx={{ flexGrow: 1, typography: "h6" }}>PANTRY</Box>
-          <Box display="flex" gap={5}>
+          <Box
+            display="flex"
+            gap={5}
+            sx={{
+              gap: {
+                xs: 0,
+                sm: 5,
+              },
+            }}
+          >
             {currentUser && (
               <>
                 <RouterLink className={classes.link} to="/shoppingList">
-                  <Button variant="contained" color="success">
+                  <Button variant="contained" color="success" size="medium">
                     Shopping list
                   </Button>
                 </RouterLink>
                 <RouterLink className={classes.link} to="/pantry">
-                  <Button variant="contained" color="success">
+                  <Button variant="contained" color="success" size="medium">
                     Pantry
                   </Button>
                 </RouterLink>
                 <RouterLink className={classes.link} to="/settings">
-                  <Button variant="contained" color="success">
+                  <Button variant="contained" color="success" size="medium">
                     Settings
                   </Button>
                 </RouterLink>
@@ -60,11 +61,16 @@ const Navigation = () => {
 
             <RouterLink to="/">
               {currentUser ? (
-                <Button variant="contained" color="error" onClick={signOutUser}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={signOutUser}
+                  size="medium"
+                >
                   SIGN OUT
                 </Button>
               ) : (
-                <Button variant="contained" color="success">
+                <Button variant="contained" color="success" size="medium">
                   SIGN IN
                 </Button>
               )}

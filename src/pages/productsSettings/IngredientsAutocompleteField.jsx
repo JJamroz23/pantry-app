@@ -58,8 +58,14 @@ const IngredientsAutocompleteField = ({
               {...params}
               {...getFieldErrorProps(field.name)}
               variant="outlined"
-              sx={{ width: 200 }}
               label="product name"
+              sx={{
+                width: {
+                  xs: 80,
+                  sm: 100,
+                  md: 200,
+                },
+              }}
             />
           )}
         />

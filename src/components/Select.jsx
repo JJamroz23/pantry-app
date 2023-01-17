@@ -9,7 +9,7 @@ import {
 
 const SingleSelect = ({ label, options, ...rest }) => {
   return (
-    <FormControl sx={{ width: "100px" }}>
+    <FormControl sx={{}}>
       <InputLabel>{label}</InputLabel>
       <Select displayEmpty {...rest}>
         <MenuItem key="none" value="none">
@@ -27,7 +27,5 @@ const SingleSelect = ({ label, options, ...rest }) => {
     </FormControl>
   );
 };
-
-
 
 export default SingleSelect;
