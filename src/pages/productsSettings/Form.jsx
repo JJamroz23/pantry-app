@@ -51,7 +51,17 @@ const SettingsProductForm = ({
   }
 
   return (
-    <Grid key={firestoreUid} container spacing={2} mb={3}>
+    <Grid
+      key={firestoreUid}
+      container
+      mb={3}
+      sx={{
+        gap: {
+          xs: 0,
+          sm: 3,
+        },
+      }}
+    >
       <Grid item>
         <Controller
           control={control}
@@ -85,7 +95,13 @@ const SettingsProductForm = ({
               })}
               {...getFieldErrorProps(field.name)}
               label="Minimum value"
-              sx={{ width: 200 }}
+              sx={{
+                width: {
+                  xs: 80,
+                  sm: 100,
+                  md: 200,
+                },
+              }}
             />
           )}
         />
@@ -101,7 +117,13 @@ const SettingsProductForm = ({
               })}
               {...getFieldErrorProps(field.name)}
               label="Maximum value"
-              sx={{ width: 200 }}
+              sx={{
+                width: {
+                  xs: 80,
+                  sm: 100,
+                  md: 200,
+                },
+              }}
             />
           )}
         />

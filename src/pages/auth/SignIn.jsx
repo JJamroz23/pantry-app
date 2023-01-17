@@ -54,11 +54,32 @@ const SignIn = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={5} padding={10}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={5}
+      // padding={10}
+      sx={{
+        padding: {
+          md: 8,
+          sm: 7,
+          // xs: "column",
+        },
+        gap: {
+          md: 5,
+          xs: 2,
+        },
+        pl: {
+          xs: 7,
+          sm: 0,
+          md: 7,
+        },
+      }}
+    >
       <h1>Already have an account?</h1>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <Stack direction="row" spacing={4}>
+        <Stack spacing={4} justifyContent="space-around">
           <TextField
             label="Email"
             variant="outlined"
@@ -83,13 +104,18 @@ const SignIn = () => {
           display="flex"
           gap={5}
           marginTop={5}
-          justifyContent="space-between"
+          // justifyContent="space-between"
+          sx={{
+            justifyContent: {
+              sm: "space-between",
+            },
+          }}
         >
           <Button
             type="submit"
             variant="contained"
             endIcon={<SendRoundedIcon />}
-            size="small"
+            size="medium"
           >
             Sign in
           </Button>
@@ -97,7 +123,7 @@ const SignIn = () => {
             onClick={signInWithGoogle}
             variant="contained"
             endIcon={<SendRoundedIcon />}
-            size="large"
+            size="medium"
           >
             Google Sign in
           </Button>

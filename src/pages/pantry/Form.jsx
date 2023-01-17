@@ -25,15 +25,42 @@ const PantryProductForm = ({
         key={firestoreUid}
         container
         height={60}
-        gap={3}
         mb={3}
         justifyContent="center"
+        sx={{
+          gap: {
+            xs: 0,
+            sm: 1,
+            lg: 3,
+          },
+        }}
       >
         {Array(4)
           .fill(1)
           .map((i, idx) => (
-            <Grid item key={idx} width={200} height={60}>
-              <Skeleton variant="rectangular" width={200} height={60} />
+            <Grid
+              item
+              key={idx}
+              height={60}
+              sx={{
+                width: {
+                  xs: 80,
+                  sm: 100,
+                  md: 200,
+                },
+              }}
+            >
+              <Skeleton
+                variant="rectangular"
+                height={60}
+                sx={{
+                  width: {
+                    xs: 80,
+                    sm: 100,
+                    md: 200,
+                  },
+                }}
+              />
             </Grid>
           ))}
       </Grid>
@@ -45,11 +72,17 @@ const PantryProductForm = ({
       <Grid
         key={firestoreUid}
         container
-        spacing={2}
         mb={3}
         justifyContent="center"
+        sx={{
+          gap: {
+            xs: 0,
+            sm: 1,
+            lg: 3,
+          },
+        }}
       >
-        <Grid item sm={3} xs={6}>
+        <Grid item>
           <Controller
             control={control}
             name={`products.${index}.name`}
@@ -59,20 +92,38 @@ const PantryProductForm = ({
                 variant="outlined"
                 disabled
                 {...field}
+                sx={{
+                  width: {
+                    xs: 80,
+                    sm: 100,
+                    md: 200,
+                  },
+                }}
               />
             )}
           />
         </Grid>
-        <Grid item sm={3} xs={6}>
+        <Grid item>
           <Controller
             control={control}
             name={`products.${index}.units`}
             render={({ field }) => (
-              <TextField disabled {...field} label="Product units" />
+              <TextField
+                disabled
+                {...field}
+                label="Product units"
+                sx={{
+                  width: {
+                    xs: 80,
+                    sm: 100,
+                    md: 200,
+                  },
+                }}
+              />
             )}
           />
         </Grid>
-        <Grid item sm={3} xs={6}>
+        <Grid item>
           <Controller
             control={control}
             name={`products.${index}.currentValue`}
@@ -83,11 +134,18 @@ const PantryProductForm = ({
                 })}
                 {...getFieldErrorProps(field.name)}
                 label="current value"
+                sx={{
+                  width: {
+                    xs: 80,
+                    sm: 100,
+                    md: 200,
+                  },
+                }}
               />
             )}
           />
         </Grid>
-        <Grid item sm={3} xs={6}>
+        <Grid item>
           <Controller
             control={control}
             name={`products.${index}.updateValue`}
@@ -99,6 +157,13 @@ const PantryProductForm = ({
                 {...getFieldErrorProps(field.name)}
                 label="subtract value"
                 defaultValue={0}
+                sx={{
+                  width: {
+                    xs: 80,
+                    sm: 100,
+                    md: 200,
+                  },
+                }}
               />
             )}
           />

@@ -55,11 +55,54 @@ const SignUp = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={5} padding={10}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={5}
+      sx={{
+        p: {
+          md: 8,
+          sm: 7,
+          xs: 2,
+        },
+        pr: {
+          xs: 7,
+          sm: 0,
+          md: 7,
+        },
+        pl: {
+          xs: 7,
+          sm: 0,
+          md: 7,
+        },
+        gap: {
+          md: 5,
+          xs: 2,
+        },
+      }}
+    >
       <h1>Do not have account yet?</h1>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={5}>
+        <Box
+          display="grid"
+          // gridTemplateColumns="repeat(2, 1fr)"
+          gap={4}
+          sx={{
+            display: {
+              xs: "grid",
+              sm: "flex",
+              md: "grid",
+            },
+            flexDirection: {
+              sm: "column",
+            },
+            gridTemplateColumns: {
+              xs: "repeat(2, 1fr)",
+              md: "repeat(2, 1fr)",
+            },
+          }}
+        >
           <TextField
             label="Display name"
             type="text"
